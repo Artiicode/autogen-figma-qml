@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import argparse
 import os
 import sys
 from pathlib import Path
@@ -26,16 +27,30 @@ def _yes_no(text: str) -> bool:
 
 
 def main() -> int:
-    print("Figma 디자인 생성용 요구사항을 입력해주세요.")
-    print("예: 현재 cpu 사용량, ram 사용량을 보여줄 수 있는 모던한 디자인")
-    requirements = _prompt("> ")
+    parser = argparse.ArgumentParser(description="Interactive requirements -> spec -> optional QML")
+    parser.add_argument("--requirements-file", help="Path to a text file with requirements")
+    args = parser.parse_args()
+
+    requirements = ""
+    if args.requirements_file:
+        requirements = Path(args.requirements_file).read_text(encoding="utf-8").strip()
+    else:
+        print("Figma 디자인 생성용 요구사항을 입력해주세요.")
+        print("예: 현재 cpu 사용량, ram 사용량을 보여줄 수 있는 모던한 디자인")
+        requirements = _prompt("> ")
+
     if not requirements:
         print("요구사항이 비어있습니다.")
         return 2
 
     prompt_path = Path("prompts/figma_spec_prompt.txt")
     model = os.environ.get("OLLAMA_MODEL", "qwen3:8b")
-    spec = generate_spec(requirements, prompt_path, model)
+    try:
+        spec = generate_spec(requirements, prompt_path, model)
+    except Exception as exc:
+        print(f"스펙 생성에 실패했습니다: {exc}")
+        print("모델이 JSON만 출력하도록 프롬프트를 조정하거나 더 작은 모델로 시도해보세요.")
+        return 1
 
     spec_out = Path("specs/out.json")
     spec_out.parent.mkdir(parents=True, exist_ok=True)

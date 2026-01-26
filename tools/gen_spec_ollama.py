@@ -11,12 +11,54 @@ def _load_prompt(prompt_path: Path, requirements: str) -> str:
     return template.replace("{{REQUIREMENTS}}", requirements)
 
 
-def _extract_json(text: str) -> str:
-    start = text.find("{")
-    end = text.rfind("}")
-    if start == -1 or end == -1 or end <= start:
-        raise ValueError("No JSON object found in model output.")
-    return text[start : end + 1]
+def _extract_code_block(text: str) -> str:
+    fence = "```"
+    if fence not in text:
+        return text
+    start = text.find(fence)
+    end = text.rfind(fence)
+    if end <= start:
+        return text
+    block = text[start + len(fence) : end].strip()
+    if "\n" in block:
+        first, rest = block.split("\n", 1)
+        if first.strip().lower() in {"json", "text"}:
+            return rest.strip()
+    return block.strip()
+
+
+def _extract_json_objects(text: str) -> list[str]:
+    objects = []
+    depth = 0
+    start = None
+    in_string = False
+    escape = False
+
+    for i, ch in enumerate(text):
+        if in_string:
+            if escape:
+                escape = False
+            elif ch == "\\":
+                escape = True
+            elif ch == "\"":
+                in_string = False
+            continue
+
+        if ch == "\"":
+            in_string = True
+            continue
+        if ch == "{":
+            if depth == 0:
+                start = i
+            depth += 1
+        elif ch == "}":
+            if depth > 0:
+                depth -= 1
+                if depth == 0 and start is not None:
+                    objects.append(text[start : i + 1])
+                    start = None
+
+    return objects
 
 
 def generate_spec(requirements: str, prompt_path: Path, model: str) -> dict:
@@ -32,11 +74,25 @@ def generate_spec(requirements: str, prompt_path: Path, model: str) -> dict:
         raise RuntimeError(result.stderr.strip() or "ollama run failed")
 
     raw = result.stdout.strip()
+    if not raw:
+        raise RuntimeError("ollama returned empty output. Check that the model is pulled and running.")
     try:
         return json.loads(raw)
     except json.JSONDecodeError:
-        extracted = _extract_json(raw)
-        return json.loads(extracted)
+        cleaned = _extract_code_block(raw)
+        objects = _extract_json_objects(cleaned)
+        for candidate in reversed(objects):
+            try:
+                return json.loads(candidate)
+            except json.JSONDecodeError:
+                continue
+
+        debug_path = Path("specs/last_ollama_output.txt")
+        debug_path.parent.mkdir(parents=True, exist_ok=True)
+        debug_path.write_text(raw, encoding="utf-8")
+        raise ValueError(
+            f"Failed to parse JSON from model output. Raw output saved to {debug_path}."
+        )
 
 
 def main() -> int:

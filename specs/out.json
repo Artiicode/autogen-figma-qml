@@ -1,83 +1,73 @@
 {
-  "name": "SystemMonitor",
-  "width": 400,
-  "height": 300,
+  "name": "dashboard",
+  "width": 800,
+  "height": 600,
   "children": [
     {
       "type": "rect",
-      "name": "cpuBg",
+      "name": "background",
+      "x": 0,
+      "y": 0,
+      "width": 800,
+      "height": 600,
+      "fill": "#1e1e2f",
+      "radius": 10
+    },
+    {
+      "type": "rect",
+      "name": "cpu-card",
       "x": 20,
-      "y": 30,
-      "width": 360,
-      "height": 80,
-      "fill": "#2a2a4a",
-      "radius": 12
+      "y": 20,
+      "width": 300,
+      "height": 150,
+      "fill": "#2d2d44",
+      "radius": 10
     },
     {
       "type": "text",
-      "name": "cpuLabel",
-      "x": 60,
-      "y": 45,
+      "name": "cpu-label",
+      "x": 40,
+      "y": 40,
       "text": "CPU Usage",
-      "fontSize": 16,
+      "fontSize": 18,
       "color": "#ffffff"
     },
     {
       "type": "text",
-      "name": "cpuValue",
-      "x": 60,
-      "y": 65,
+      "name": "cpu-value",
+      "x": 40,
+      "y": 70,
       "text": "75%",
-      "fontSize": 24,
+      "fontSize": 36,
       "color": "#00ffcc"
     },
     {
       "type": "rect",
-      "name": "ramBg",
-      "x": 20,
-      "y": 130,
-      "width": 360,
-      "height": 80,
-      "fill": "#333355",
-      "radius": 12
+      "name": "ram-card",
+      "x": 340,
+      "y": 20,
+      "width": 300,
+      "height": 150,
+      "fill": "#2d2d44",
+      "radius": 10
     },
     {
       "type": "text",
-      "name": "ramLabel",
-      "x": 60,
-      "y": 145,
+      "name": "ram-label",
+      "x": 360,
+      "y": 40,
       "text": "RAM Usage",
-      "fontSize": 16,
+      "fontSize": 18,
       "color": "#ffffff"
     },
     {
       "type": "text",
-      "name": "ramValue",
-      "x": 60,
-      "y": 165,
+      "name": "ram-value",
+      "x": 360,
+      "y": 70,
       "text": "65%",
-      "fontSize": 24,
+      "fontSize": 36,
       "color": "#00ccff"
-    },
-    {
-      "type": "rect",
-      "name": "cpuIcon",
-      "x": 10,
-      "y": 45,
-      "width": 12,
-      "height": 12,
-      "fill": "#00ffcc",
-      "radius": 6
-    },
-    {
-      "type": "rect",
-      "name": "ramIcon",
-      "x": 10,
-      "y": 155,
-      "width": 12,
-      "height": 12,
-      "fill": "#00ccff",
-      "radius": 6
     }
   ]
 }

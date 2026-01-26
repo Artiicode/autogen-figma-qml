@@ -2,76 +2,67 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 
 ApplicationWindow {
-    width: 400
-    height: 300
+    width: 800
+    height: 600
     visible: true
-    title: "SystemMonitor"
+    title: "dashboard"
+
+    Rectangle {
+        x: 0
+        y: 0
+        width: 800
+        height: 600
+        radius: 10
+        color: "#1e1e2f"
+    }
 
     Rectangle {
         x: 20
-        y: 30
-        width: 360
-        height: 80
-        radius: 12
-        color: "#2a2a4a"
+        y: 20
+        width: 300
+        height: 150
+        radius: 10
+        color: "#2d2d44"
     }
 
     Text {
-        x: 60
-        y: 45
+        x: 40
+        y: 40
         text: "CPU Usage"
-        font.pixelSize: 16
+        font.pixelSize: 18
         color: "#ffffff"
     }
 
     Text {
-        x: 60
-        y: 65
+        x: 40
+        y: 70
         text: "75%"
-        font.pixelSize: 24
+        font.pixelSize: 36
         color: "#00ffcc"
     }
 
     Rectangle {
-        x: 20
-        y: 130
-        width: 360
-        height: 80
-        radius: 12
-        color: "#333355"
+        x: 340
+        y: 20
+        width: 300
+        height: 150
+        radius: 10
+        color: "#2d2d44"
     }
 
     Text {
-        x: 60
-        y: 145
+        x: 360
+        y: 40
         text: "RAM Usage"
-        font.pixelSize: 16
+        font.pixelSize: 18
         color: "#ffffff"
     }
 
     Text {
-        x: 60
-        y: 165
+        x: 360
+        y: 70
         text: "65%"
-        font.pixelSize: 24
-        color: "#00ccff"
-    }
-
-    Rectangle {
-        x: 10
-        y: 45
-        width: 12
-        height: 12
-        radius: 6
-        color: "#00ffcc"
-    }
-
-    Rectangle {
-        x: 10
-        y: 155
-        width: 12
-        height: 12
-        radius: 6
+        font.pixelSize: 36
         color: "#00ccff"
     }
 

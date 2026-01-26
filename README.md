@@ -64,11 +64,11 @@ JSON spec example:
 
 ### Install
 
-Create a venv and install PySide6 (Qt for Python Community Edition) using uv:
+Create a venv and install dependencies using uv:
 
 - uv venv --allow-existing .venv
 - . .venv/bin/activate
-- uv pip install -r requirements.txt
+- uv sync
 
 ### Run QML
 
@@ -104,6 +104,7 @@ You can override the model with `--model` or `OLLAMA_MODEL`.
 ## Interactive flow (requirements -> spec -> optional QML)
 
 - `python tools/interactive_flow.py`
+- `python tools/interactive_flow.py --requirements-file requirements/design_requirements.txt`
 
 ## Figma MCP (Python, read-only) -> QML
 
