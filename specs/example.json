@@ -1,0 +1,45 @@
+{
+  "name": "MainFrame",
+  "width": 900,
+  "height": 600,
+  "children": [
+    {
+      "type": "rect",
+      "name": "Hero",
+      "x": 40,
+      "y": 40,
+      "width": 820,
+      "height": 240,
+      "fill": "#F2F2F2",
+      "radius": 24
+    },
+    {
+      "type": "rect",
+      "name": "CTA",
+      "x": 40,
+      "y": 320,
+      "width": 820,
+      "height": 80,
+      "fill": "#111111",
+      "radius": 12
+    },
+    {
+      "type": "text",
+      "name": "Title",
+      "x": 60,
+      "y": 70,
+      "text": "Auto GUI",
+      "fontSize": 32,
+      "color": "#111111"
+    },
+    {
+      "type": "text",
+      "name": "CTA Label",
+      "x": 60,
+      "y": 345,
+      "text": "Get Started",
+      "fontSize": 20,
+      "color": "#FFFFFF"
+    }
+  ]
+}

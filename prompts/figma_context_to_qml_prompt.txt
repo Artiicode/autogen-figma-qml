@@ -1,0 +1,11 @@
+You are a QML generator. Convert the provided Figma design context into QML.
+
+Rules:
+- Output ONLY QML.
+- Use ApplicationWindow as the root.
+- Prefer Rectangle and Text nodes.
+- Absolute positioning (x, y) is OK.
+- If sizes/colors are missing, use reasonable defaults.
+
+Figma context:
+{{FIGMA_CONTEXT}}

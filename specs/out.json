@@ -1,0 +1,83 @@
+{
+  "name": "SystemMonitor",
+  "width": 400,
+  "height": 300,
+  "children": [
+    {
+      "type": "rect",
+      "name": "cpuBg",
+      "x": 20,
+      "y": 30,
+      "width": 360,
+      "height": 80,
+      "fill": "#2a2a4a",
+      "radius": 12
+    },
+    {
+      "type": "text",
+      "name": "cpuLabel",
+      "x": 60,
+      "y": 45,
+      "text": "CPU Usage",
+      "fontSize": 16,
+      "color": "#ffffff"
+    },
+    {
+      "type": "text",
+      "name": "cpuValue",
+      "x": 60,
+      "y": 65,
+      "text": "75%",
+      "fontSize": 24,
+      "color": "#00ffcc"
+    },
+    {
+      "type": "rect",
+      "name": "ramBg",
+      "x": 20,
+      "y": 130,
+      "width": 360,
+      "height": 80,
+      "fill": "#333355",
+      "radius": 12
+    },
+    {
+      "type": "text",
+      "name": "ramLabel",
+      "x": 60,
+      "y": 145,
+      "text": "RAM Usage",
+      "fontSize": 16,
+      "color": "#ffffff"
+    },
+    {
+      "type": "text",
+      "name": "ramValue",
+      "x": 60,
+      "y": 165,
+      "text": "65%",
+      "fontSize": 24,
+      "color": "#00ccff"
+    },
+    {
+      "type": "rect",
+      "name": "cpuIcon",
+      "x": 10,
+      "y": 45,
+      "width": 12,
+      "height": 12,
+      "fill": "#00ffcc",
+      "radius": 6
+    },
+    {
+      "type": "rect",
+      "name": "ramIcon",
+      "x": 10,
+      "y": 155,
+      "width": 12,
+      "height": 12,
+      "fill": "#00ccff",
+      "radius": 6
+    }
+  ]
+}

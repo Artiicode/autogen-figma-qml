@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 12px;
+      }
+      textarea {
+        width: 100%;
+        height: 280px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+      button {
+        margin-top: 8px;
+        padding: 8px 12px;
+      }
+      #status {
+        margin-top: 8px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div>Paste JSON spec and build:</div>
+    <textarea id="spec"></textarea>
+    <button id="build">Build</button>
+    <div id="status"></div>
+
+    <script>
+      const spec = document.getElementById("spec");
+      const status = document.getElementById("status");
+      document.getElementById("build").addEventListener("click", () => {
+        parent.postMessage({ pluginMessage: { type: "build", payload: spec.value } }, "*");
+      });
+      window.onmessage = (event) => {
+        const msg = event.data.pluginMessage;
+        if (msg && msg.type === "status") {
+          status.textContent = msg.payload;
+        }
+      };
+    </script>
+  </body>
+</html>

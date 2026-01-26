@@ -1,0 +1,8 @@
+{
+  "name": "Auto GUI Spec Builder",
+  "id": "auto-gui-spec-builder",
+  "editorType": ["figma"],
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html"
+}
